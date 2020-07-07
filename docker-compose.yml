@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  service-a:
+    build:
+      context: .
+      dockerfile: a/Dockerfile
+    privileged: true
+    ports:
+      - "8011:8011"
+    restart: always
+    depends_on:
+      - mysql
+
+  service-b:
+    build:
+      context: .
+      dockerfile: b/Dockerfile
+    privileged: true
+    ports:
+      - "8022:8022"
+    restart: always
+
+  service-c:
+    build:
+      context: .
+      dockerfile: c/Dockerfile
+    privileged: true
+
+  mysql:
+    image: mysql/mysql-server:5.7
+    ports:
+      - "3306:3306"
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: MYSQL_ADMIN
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test_pass_hoge
+      BITNAMI_DEBUG: "true"
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
