@@ -16,7 +16,7 @@ func root(w http.ResponseWriter, r *http.Request) {
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "b")
+	fmt.Fprintf(w, "hello_a")
 	fmt.Printf("%#v\n", r.RemoteAddr)
 	bss, _ := json.MarshalIndent(r.Header, "", "	")
 	fmt.Printf("%v\n", string(bss))
