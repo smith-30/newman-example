@@ -1,14 +1,25 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
 	"github.com/smith-30/cidind/rdb"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "a")
+func root(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "b")
+	fmt.Printf("%#v\n", r.RemoteAddr)
+	bss, _ := json.MarshalIndent(r.Header, "", "	")
+	fmt.Printf("%v\n", string(bss))
+}
+
+func hello(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "b")
+	fmt.Printf("%#v\n", r.RemoteAddr)
+	bss, _ := json.MarshalIndent(r.Header, "", "	")
+	fmt.Printf("%v\n", string(bss))
 }
 
 func main() {
@@ -16,7 +27,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%#v\n", "ok")
-	http.HandleFunc("/", handler) // ハンドラを登録してウェブページを表示させる
+	http.HandleFunc("/", root)
+	http.HandleFunc("/hello", hello)
 	http.ListenAndServe("0.0.0.0:8011", nil)
 }

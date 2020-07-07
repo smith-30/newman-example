@@ -21,12 +21,6 @@ services:
       - "8022:8022"
     restart: always
 
-  service-c:
-    build:
-      context: .
-      dockerfile: c/Dockerfile
-    privileged: true
-
   mysql:
     image: mysql/mysql-server:5.7
     ports:
@@ -40,3 +34,18 @@ services:
       BITNAMI_DEBUG: "true"
     volumes:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
+
+  newman:
+    build:
+      context: .
+      dockerfile: e2e/Dockerfile
+    entrypoint:
+      - dockerize
+      - -timeout
+      - 300s
+      - -wait
+      - tcp://service-a:8080
+      - -wait
+      - tcp://service-b:8080
+    volumes:
+      - ./e2e:/etc/newman/e2e
