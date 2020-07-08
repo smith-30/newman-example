@@ -17,4 +17,5 @@ jobs:
       - run: docker-compose up -d
       - run: sleep 20
       - run: docker-compose logs service-a
+      - run: docker-compose logs mysql
       - run: make run-e2e
