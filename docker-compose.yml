@@ -29,16 +29,15 @@ services:
     restart: always
 
   mysql:
-    image: mysql/mysql-server:5.7
-    privileged: true
+    image: bitnami/mysql:5.7.25
+    volumes:
+      - ./mysql/my.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
     environment:
-      MYSQL_ROOT_PASSWORD: MYSQL_ADMIN
+      MYSQL_ROOT_PASSWORD: "test_r00t"
       MYSQL_DATABASE: testdb
       MYSQL_USER: test
       MYSQL_PASSWORD: test_pass_hoge
       BITNAMI_DEBUG: "true"
-    volumes:
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
 
   newman:
     build:
