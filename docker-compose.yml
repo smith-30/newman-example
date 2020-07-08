@@ -44,8 +44,8 @@ services:
       - -timeout
       - 300s
       - -wait
-      - tcp://service-a:8080
+      - tcp://service-a:8011
       - -wait
-      - tcp://service-b:8080
+      - tcp://service-b:8022
     volumes:
       - ./e2e:/etc/newman/e2e

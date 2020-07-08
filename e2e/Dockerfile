@@ -1,5 +1,7 @@
 FROM postman/newman
 
+LABEL maintainer="smith-30"
+
 RUN apk update
 RUN apk add --no-cache curl wget openssl
 
