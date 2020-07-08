@@ -20,7 +20,7 @@ jobs:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
           POSTMAN_COLLECTION_ID: ${{ secrets.POSTMAN_COLLECTION_ID }}
           POSTMAN_ENVIRONMENT_ID: ${{ secrets.POSTMAN_ENVIRONMENT_ID }}
-        run: echo $POSTMAN_COLLECTION_ID
-          curl -H 'X-Api-Key:' https://api.getpostman.com/collections/"$POSTMAN_COLLECTION_ID" > e2e/api.json \
-          curl -H 'X-Api-Key:' https://api.getpostman.com/environments/"$POSTMAN_ENVIRONMENT_ID" > e2e/e2e.postman_environment.json \
+        run:
+          curl -H 'X-Api-Key:' https://api.getpostman.com/collections/$POSTMAN_COLLECTION_ID > e2e/api.json && \
+          curl -H 'X-Api-Key:' https://api.getpostman.com/environments/"$POSTMAN_ENVIRONMENT_ID" > e2e/e2e.postman_environment.json && \
           docker-compose run newman newman run e2e/api.json --environment=e2e/e2e.postman_environment.json
