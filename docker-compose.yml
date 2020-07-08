@@ -12,8 +12,6 @@ services:
       - 300s
       - -wait
       - tcp://mysql:3306
-      - -wait
-      - tcp://service-b:8022
     ports:
       - "8011:8011"
     restart: always
