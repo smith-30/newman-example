@@ -1,6 +1,6 @@
 POSTMAN_API_KEY=$(shell cat .env)
 
 run-e2e:
-	curl -H 'X-Api-Key:$(POSTMAN_API_KEY)' https://api.getpostman.com/collections/9403164-841d7433-4ca3-470e-b15f-bfed26658353 > e2e/api.json
-	curl -H 'X-Api-Key:$(POSTMAN_API_KEY)' https://api.getpostman.com/environments/9403164-4ed6baf7-601f-4227-a7af-9769a4cea659 > e2e/e2e.postman_environment.json
+	curl -H 'X-Api-Key:$(POSTMAN_API_KEY)' https://api.getpostman.com/collections/625522-4e36bf20-943e-436b-a11f-9931275992ee > e2e/api.json
+	curl -H 'X-Api-Key:$(POSTMAN_API_KEY)' https://api.getpostman.com/environments/625522-5469f08b-97de-4721-99c6-fbc21c782338 > e2e/e2e.postman_environment.json
 	docker-compose run newman newman run e2e/api.json --environment=e2e/e2e.postman_environment.json
