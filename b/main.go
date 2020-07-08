@@ -14,6 +14,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Printf("%#v\n", "start service-b")
 	http.HandleFunc("/", root)
 	http.HandleFunc("/hello", hello)
 	http.ListenAndServe(":8022", nil)

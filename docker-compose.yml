@@ -12,6 +12,7 @@ services:
       - 300s
       - -wait
       - tcp://mysql:3306
+    command: ./main
     ports:
       - "8011:8011"
     restart: always

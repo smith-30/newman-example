@@ -60,6 +60,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Printf("%#v\n", "start service-a")
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", root)
