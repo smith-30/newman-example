@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/smith-30/cidind/rdb"
+	"github.com/smith-30/newman-example/rdb"
 )
 
 type User struct {
