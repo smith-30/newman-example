@@ -22,8 +22,8 @@ func NewUser() User {
 	}
 }
 
-func root(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "a")
+func ping(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "ping")
 }
 
 func createUser(w http.ResponseWriter, r *http.Request) {
@@ -40,6 +40,8 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 
 func showUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
+
+	// postman の変数更新を確認するため意図的にこう書いてます
 	if vars["id"] != "1" {
 		http.Error(w, "invalid user id", http.StatusBadGateway)
 		return
@@ -63,7 +65,7 @@ func main() {
 	fmt.Printf("%#v\n", "start service-a")
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", root)
+	r.HandleFunc("/ping", ping)
 	r.HandleFunc("/user", createUser).Methods("POST")
 	r.HandleFunc("/user/{id}", showUser).Methods("GET")
 
